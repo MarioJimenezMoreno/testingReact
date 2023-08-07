@@ -36,7 +36,7 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
         <div className="taskCreatorContainer">
           <div className="taskCreatorWindow">
             <h2>New Task</h2>
-            <form className="formNewTask">
+            <div className="nameContainer">
               <span>NAME</span>
               <input
                 type="text"
@@ -50,6 +50,8 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
                   handleInputChange();
                 }}
               />
+              </div>
+              <div className="categoryContainer">
               <span>CATEGORY</span>
               <select
                 name="category"
@@ -66,9 +68,10 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
             <option value="Estudio">Estudio</option>
             <option value="Trabajo">Trabajo</option>
               </select>
-              </form>
+              </div>
+              <div className="hourContainer">
+              <div className="startHour">
               <span>INITIAL HOUR</span>
-              <div>
             {showStartTime &&
                 <TimeKeeper
                     startTime={startTime}
@@ -78,13 +81,14 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
                     switchToMinuteOnHourSelect
                 />
             }
-            <span>Start time: {startTime}</span>
-            {!showStartTime &&
-                <button onClick={() => setShowStartTime(true)}>Show</button>
+                        {!showStartTime &&
+                <button onClick={() => setShowStartTime(true)}>Select</button>
             }
+            <span>Start time: {startTime}</span>
+
         </div>
-<span>END HOUR</span>
-<div>
+        <div className="endHour">
+            <span>END HOUR</span>
             {showEndTime &&
                 <TimeKeeper
                 endTime={endTime}
@@ -95,13 +99,18 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
                     switchToMinuteOnHourSelect
                 />
             }
-            <span>End time: {endTime}</span>
-            {!showEndTime &&
-                <button onClick={() => setShowEndTime(true)}>Show</button>
+             {!showEndTime &&
+                <button onClick={() => setShowEndTime(true)}>Select</button>
             }
+            <span>End time: {endTime}</span>
+           
         </div>
+        </div>
+        <div className="datePickerContainer">
+        <span>Pick a date:</span>
 <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
               <span>Date is {startDate.toLocaleDateString()}</span>
+              </div>
               <button
                 type="button"
                 className="createTaskBtn"
