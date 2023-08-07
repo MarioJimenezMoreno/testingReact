@@ -1,0 +1,83 @@
+.header {
+  height: 10vh;
+}
+
+.logo {
+  max-width: 50px;
+  height: auto;
+}
+
+.navbar {
+  background-color: #3498db;
+}
+
+.navbar .nav-link {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.navbar .nav-link:hover {
+  text-decoration: underline;
+}
+.newTaskButton {
+  top: 85%;
+  left: 90%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  cursor: pointer;
+  z-index: 2;
+}
+.newTaskButton img {
+  height: 50px;
+}
+.taskCreatorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 800px;
+  background-color: grey;
+  z-index: 4;
+}
+.daysContainer {
+  overflow: scroll;
+  height: 90vh;
+}
+.daysContainer::-webkit-scrollbar,
+.daysContainer::-webkit-scrollbar-thumb {
+  display: none;
+}
+.currentTaskContainer,
+.previousTaskContainer,
+.nextTaskContainer {
+  margin-block: 0;
+  margin-inline: 5px;
+  justify-self: center;
+  height: 100%;
+}
+.previousTaskContainer {
+  background-color: blue;
+}
+.currentTaskContainer {
+  background-color: red;
+}
+.nextTaskContainer {
+  background-color: green;
+}
+.fader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
