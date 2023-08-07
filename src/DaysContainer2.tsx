@@ -16,13 +16,28 @@ interface Task {
   name: string;
 }
 
-const App: React.FC = () => {
-  const daysOfThisYear: DayWithTasks[] = [
-    // ... your array of day objects here
-  ];
+const getDaysInYear = (year: number): DayWithTasks[] => {
+  const daysInYear: DayWithTasks[] = [];
+  for (let month = 1; month <= 12; month++) {
+    const daysInMonth = new Date(year, month, 0).getDate();
+    for (let day = 1; day <= daysInMonth; day++) {
+      daysInYear.push({
+        day: day,
+        month: month,
+        year: year,
+        tasks: [],
+      });
+    }
+  }
+  return daysInYear;
+};
+
+const DaysContainer2: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+  const daysOfThisYear: DayWithTasks[] = getDaysInYear(currentYear);
 
   return (
-    <div className="app">
+    <div className="daysContainer">
       {daysOfThisYear.map((day, index) => (
         <DayPreview
           key={index}
@@ -36,4 +51,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default DaysContainer2;

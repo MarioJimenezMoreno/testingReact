@@ -17,7 +17,7 @@ interface DayPreviewProps {
 
 const DayPreview: React.FC<DayPreviewProps> = ({ day, month, year, tasks }) => {
   return (
-    <div className="day-preview">
+    <div className="dayPreview">
       <h3>{`${day}/${month}/${year}`}</h3>
       <ul>
         {tasks.map((task, index) => (
