@@ -42,8 +42,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 800px;
-  height: 800px;
+  width: 50%;
+  height: 50%;
   background-color: grey;
   z-index: 4;
 }
@@ -75,8 +75,11 @@
 
 .dayPreview {
   height: 100%;
-  background-color: red;
+  background-color: lightgrey;
   border-bottom: black 1px solid;
+}
+.dayHeader{
+  background-color: aquamarine;
 }
 .fader {
   position: fixed;
