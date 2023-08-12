@@ -49,6 +49,8 @@
 }
 .daysContainer {
   overflow: scroll;
+  background-color: grey;
+  margin-left: 150px;
   height: 90vh;
 }
 .daysContainer::-webkit-scrollbar,
@@ -86,4 +88,34 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 3;
+}
+.dateTitle {
+  background-color: rgb(70, 70, 70);
+  color: white;
+  padding-left: 10px;
+  font-size: 1.5rem;
+}
+.dateTitle p {
+  margin-bottom: 0;
+}
+
+.loadingTasks {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  height: 100%;
+  margin-bottom: 0;
+  color: white;
+}
+
+.task {
+  background-color: #3498db;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  margin: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

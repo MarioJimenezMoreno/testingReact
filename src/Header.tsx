@@ -1,14 +1,7 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
+import { HeaderProps } from './types';
 
-interface Link {
-  label: string;
-  url: string;
-}
-
-interface HeaderProps {
-  links: Link[];
-}
 
 const Header: React.FC<HeaderProps> = ({ links }) => {
   return (

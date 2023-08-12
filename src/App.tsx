@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Calendar from "./Calendar";
-import DaysContainer2 from "./DaysContainer2";
+import DaysContainer from "./DaysContainer";
 import TaskCreator from "./TaskCreator";
+import { Task } from './types';
+import axios from 'axios'; 
+import DaysContainerLoader from "./DaysContainerLoader";
 
 const links = [
   { label: "Feature 1", url: "/feature1" },
@@ -13,17 +16,37 @@ const links = [
 ];
 
 const App: React.FC = () => {
+
   const [taskCreatorVisible, setTaskCreatorVisible] = useState(false);
+  const [tasks, setTasks] = useState<Task[]>([]); // Initialize tasks state with an empty array
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   const handleNewTask = () => {
     setTaskCreatorVisible(!taskCreatorVisible);    
   };
 
+  useEffect(() => {
+    const dateParam = "2023-08-12";
+    axios.get(`/api/tasks?date=${dateParam}`)
+      .then(response => {
+        setTasks(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching tasks:', error);
+      });
+  }, []);
+
+
+
   return (
     <>
       <Header links={links} />
-      <Calendar />
-      <DaysContainer2 />
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      {tasks.length > 0 ? (
+        <DaysContainer tasks={tasks} />
+      ) : (
+        <DaysContainerLoader selectedDate={selectedDate} />
+      )}
       <div
         className="newTaskButton"
         onClick={handleNewTask}

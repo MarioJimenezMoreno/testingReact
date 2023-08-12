@@ -7,8 +7,6 @@ interface TaskCreatorProps {
     handleNewTask: () => void;
   }
 
-
-
 const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
 
     const [taskName, setTaskName] = useState("");
