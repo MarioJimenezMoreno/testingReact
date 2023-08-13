@@ -2,7 +2,6 @@ import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { HeaderProps } from './types';
 
-
 const Header: React.FC<HeaderProps> = ({ links }) => {
   return (
     <Navbar className="p-4 header">

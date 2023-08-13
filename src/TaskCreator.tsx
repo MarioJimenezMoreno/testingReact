@@ -97,7 +97,7 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask, selectedDate}) 
             <span>END HOUR</span>
             {showEndTime &&
                 <TimeKeeper
-                time = '23:59'
+                    time = '23:59'
                     onChange={(newTime) => setEndTime(newTime.formatted24)}
                     hour24Mode
                     disabledTimeRange={{from: '23:59', to: startTime}}

@@ -160,3 +160,8 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+.profileContainer {
+  width: 100vw;
+  height: 90vh;
+  background-color: grey;
+}

@@ -11,7 +11,7 @@ import {
 } from 'date-fns';
 
 const links = [
-  { label: "Feature 1", url: "/feature1" },
+  { label: "Log Out", url: "/" },
   { label: "Feature 2", url: "/feature2" },
   { label: "Feature 3", url: "/feature3" },
   { label: "Feature 4", url: "/feature4" },

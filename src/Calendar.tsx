@@ -61,20 +61,7 @@ function Calendar({ selectedDate, setSelectedDate }: CalendarProps) {
 
   return (
     <div className="calendar">
-      {/* <h1>Calendario</h1> */}
-        {/* <p>{format(displayedDate, 'dd MMM yyyy')}</p> Display the selected date */}
-        <p className="calendarTitle">{format(selectedDate, 'MMM yyyy')}</p> {/* Display the selected date */}
-      {/* <header>
-        <h1>Calendario</h1>
-
-        <div className="week-navigation">
-          <p>{`${format(startOfWeekDate, 'dd MMM yyyy')} - ${format(
-            endOfWeekDate,
-            'dd MMM yyyy'
-          )}`}</p>
-
-        </div>
-      </header> */}
+        <p className="calendarTitle">{format(selectedDate, 'MMM yyyy')}</p>
       <button onClick={handlePrevWeek}>^</button>
       <div className="days">
         {dayItems}
