@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import Timekeeper from 'react-timekeeper';
+import { useState } from 'react';
+import TimeKeeper from 'react-timekeeper';
 
 function TimePickerComponent() {
-    const [selectedTime, setSelectedTime] = useState('12:00 PM');
+    const [selectedTime, setSelectedTime] = useState('00:00');
     
-    const handleTimeChange = (newTime) => {
-      setSelectedTime(newTime.formatted12);
+    const handleTimeChange = (newTime: { formatted24: string }) => {
+      setSelectedTime(newTime.formatted24);
     };
   
     return (
       <div>
-        <Timekeeper
+        <TimeKeeper
           time={selectedTime}
           onChange={handleTimeChange}
         />

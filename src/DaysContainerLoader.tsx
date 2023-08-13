@@ -1,15 +1,12 @@
 import React from 'react';
 import { format } from 'date-fns';
-
-interface DaysContainerLoaderProps {
-    selectedDate: Date;
-}
+import{DaysContainerLoaderProps} from './types'
 
 const DaysContainerLoader: React.FC<DaysContainerLoaderProps> = ({ selectedDate }) => {
   return (
-    <div className="daysContainer">
+    <div className="dayContainer">
       <div className="dateTitle"><p>{format(selectedDate, 'eeee, dd/MM/yyyy')}</p></div>
-      <p className="loadingTasks">Loading tasks...</p>
+      <div className="loaderContainer"><p className="loadingTasks">Loading tasks...</p></div>
     </div>
   );
 };

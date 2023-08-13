@@ -6,6 +6,9 @@ import TaskCreator from "./TaskCreator";
 import { Task } from './types';
 import axios from 'axios'; 
 import DaysContainerLoader from "./DaysContainerLoader";
+import {
+  format
+} from 'date-fns';
 
 const links = [
   { label: "Feature 1", url: "/feature1" },
@@ -26,8 +29,7 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    const dateParam = "2023-08-12";
-    axios.get(`/api/tasks?date=${dateParam}`)
+    axios.get(`/api/tasks?date=${format(selectedDate, 'dd/MM/yyyy')}`)
       .then(response => {
         setTasks(response.data);
       })
@@ -43,7 +45,7 @@ const App: React.FC = () => {
       <Header links={links} />
       <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       {tasks.length > 0 ? (
-        <DaysContainer tasks={tasks} />
+        <DaysContainer tasks={tasks} selectedDate={selectedDate}/>
       ) : (
         <DaysContainerLoader selectedDate={selectedDate} />
       )}
@@ -56,7 +58,7 @@ const App: React.FC = () => {
       {taskCreatorVisible && (
         <>
           <div className="fader" onClick={handleNewTask}></div>
-          <TaskCreator handleNewTask={handleNewTask}/>
+          <TaskCreator  handleNewTask={handleNewTask} selectedDate={selectedDate}/>
         </>
       )}
     </>

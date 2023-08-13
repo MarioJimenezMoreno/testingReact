@@ -3,19 +3,17 @@ import React, { useState } from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 import TimeKeeper from 'react-timekeeper';
+import {TaskCreatorProps} from './types'
 
-interface TaskCreatorProps {
-    handleNewTask: () => void;
-  }
-
-const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
+const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask, selectedDate}) => {
 
     const [taskName, setTaskName] = useState("");
     const [category, setCategory] = useState("");
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const [isFormValid, setIsFormValid] = useState(false);
-    const [startDate, setStartDate] = useState(new Date());
+    const [startTimeValid, setStartTimeValid] = useState(false);
+    const [startDate, setStartDate] = useState(selectedDate);
     const [showStartTime, setShowStartTime] = useState(false)
     const [showEndTime, setShowEndTime] = useState(false)
 
@@ -31,6 +29,14 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
       }
     };
     
+    const handleHourSetUp = () => {
+      if(startTime > endTime && endTime != ""){
+        setEndTime("");
+      }
+      if(startTime != "") {
+        setStartTimeValid(true);
+      }
+    }
 
       return (
         <div className="taskCreatorContainer">
@@ -74,15 +80,15 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
               <span>INITIAL HOUR</span>
             {showStartTime &&
                 <TimeKeeper
-                    startTime={startTime}
+                    time = '00:00'
                     onChange={(newTime) => setStartTime(newTime.formatted24)}
                     hour24Mode
-                    onDoneClick={() => setShowStartTime(false)}
+                    onDoneClick={() => {setShowStartTime(false), handleHourSetUp()}}
                     switchToMinuteOnHourSelect
                 />
             }
                         {!showStartTime &&
-                <button onClick={() => setShowStartTime(true)}>Select</button>
+                <button onClick={() => setShowStartTime(true) }>Select</button>
             }
             <span>Start time: {startTime}</span>
 
@@ -91,16 +97,16 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
             <span>END HOUR</span>
             {showEndTime &&
                 <TimeKeeper
-                endTime={endTime}
+                time = '23:59'
                     onChange={(newTime) => setEndTime(newTime.formatted24)}
                     hour24Mode
-                    disabledTimeRange={{ from: '23:59', to: startTime }}
+                    disabledTimeRange={{from: '23:59', to: startTime}}
                     onDoneClick={() => setShowEndTime(false)}
                     switchToMinuteOnHourSelect
                 />
             }
              {!showEndTime &&
-                <button onClick={() => setShowEndTime(true)}>Select</button>
+                <button disabled={!startTimeValid} onClick={() => setShowEndTime(true)}>Select</button>
             }
             <span>End time: {endTime}</span>
            
@@ -108,7 +114,7 @@ const TaskCreator: React.FC<TaskCreatorProps> = ({handleNewTask}) => {
         </div>
         <div className="datePickerContainer">
         <span>Pick a date:</span>
-<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+        <DatePicker selected={startDate} onChange={(date) => setStartDate(date || new Date())}  dateFormat="dd/MM/yyyy" />
               <span>Date is {startDate.toLocaleDateString()}</span>
               </div>
               <button
