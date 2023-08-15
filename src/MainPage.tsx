@@ -1,24 +1,13 @@
 import "./MainPage.css";
-import {Link} from 'react-router-dom'
-// import {Link, Routes, Route} from 'react-router-dom'
+import HeaderMP from './HeaderMP'
+import Team from "./Team";
 
 function MainPage() {
     
   return (
+    <>
     <div className="container">
-    <div className="flex" id="box-1">
-        <div id="logo"></div>
-        <div className="flex" id="box-nav">
-          <div className="flex" id="box-prop">
-            <Link to='/login'><h1>LogIn</h1></Link>
-            <Link to='/register'><h1>Register</h1></Link>
-            <Link to='/app'><h1>App</h1></Link>
-          </div>
-          <div className="flex" id="box-log">
-          <h1>Descargar</h1>
-          </div>
-        </div>
-    </div>
+    <HeaderMP/>
     <div id="box-2">
         <div className="box_texto flex"> 
           <div className="cont_imagen">
@@ -44,7 +33,9 @@ function MainPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      <Team/>
+    </>
   )
 }
 export default MainPage;

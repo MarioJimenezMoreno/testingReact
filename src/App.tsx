@@ -10,14 +10,6 @@ import {
   format
 } from 'date-fns';
 
-const links = [
-  { label: "Log Out", url: "/" },
-  { label: "Feature 2", url: "/feature2" },
-  { label: "Feature 3", url: "/feature3" },
-  { label: "Feature 4", url: "/feature4" },
-  { label: "Profile", url: "/profile" },
-];
-
 const App: React.FC = () => {
 
   const [taskCreatorVisible, setTaskCreatorVisible] = useState(false);
@@ -42,7 +34,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Header links={links} />
+      <Header/>
       <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       {tasks.length > 0 ? (
         <DaysContainer tasks={tasks} selectedDate={selectedDate}/>

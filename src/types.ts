@@ -11,9 +11,13 @@ export interface Link {
   url: string;
 }
 
-export interface HeaderProps {
-  links: Link[];
+export interface Data {
+  username: string;
+  email: string;
+  phone: string;
+  password: string;
 }
+
 export interface CalendarProps {
   selectedDate: Date;
   setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
@@ -29,4 +33,9 @@ export interface DaysContainerLoaderProps {
 export interface DaysContainerProps {
   tasks: Task[];
   selectedDate: Date;
+}
+
+export interface ModalProps {
+  isOpen: boolean;
+  onOpenChange: () => void;
 }

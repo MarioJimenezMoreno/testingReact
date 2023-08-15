@@ -1,28 +1,83 @@
 import React from "react";
 import Header from "./Header";
-import {Input, Spinner} from "@nextui-org/react";
-
-const links = [
-  { label: "Log Out", url: "/" },
-  { label: "Feature 2", url: "/feature2" },
-  { label: "Feature 3", url: "/feature3" },
-  { label: "Feature 4", url: "/feature4" },
-  { label: "Profile", url: "/profile" },
-];
+import EditIcon from "./IconComponents/EditIcon"
+import {Input, Button, Card,CardBody} from "@nextui-org/react";
 
 const Profile: React.FC = () => {
   return (
     <>
-      <Header links={links} /> 
-      <div className="profileContainer">
+      <Header/> 
+      <div className="profileContainer w-screen flex-col flex items-center">
+      <h1 className="p-5 text-xl">Edit Profile</h1>
+      <div className=" flex flex-col gap-4 items-center">
+      <Card>
+      <CardBody className="flex flex-row items-center gap-4">
       <Input
-      isDisabled
-      type="email"
-      label="Email"
-      defaultValue="junior@nextui.org"
-      className="max-w-xs"
-    />
-      <Spinner label="Loading..." color="warning" />
+          isReadOnly
+          type="email"
+          color="secondary"
+          label="Username"
+          defaultValue="Mordisquitos"
+          className="max-w-xs"
+        />
+         <Button color="success" startContent={<EditIcon/>}>
+        Edit
+        
+      </Button>  
+      </CardBody>
+      </Card>
+      <Card>
+      <CardBody className="flex flex-row items-center gap-4">
+      <Input
+          isReadOnly
+          label="Password"
+          color="secondary"
+          defaultValue="password"
+          type="password"
+          className="max-w-xs"
+        />
+         <Button color="success" startContent={<EditIcon/>}>
+        Edit
+        
+      </Button>  
+      </CardBody>
+      </Card>
+      <Card>
+      <CardBody className="flex flex-row items-center gap-4">
+      <Input
+          isReadOnly
+          type="email"
+          color="secondary"
+          label="Email"
+          defaultValue="mariojm2612@gmail.com"
+          className="max-w-xs"
+        />
+         <Button isIconOnly  color="success" startContent={<EditIcon/>}>
+        
+        
+      </Button>  
+      </CardBody>
+      </Card>
+      <Card>
+      <CardBody className="flex flex-row items-center gap-4">
+      <Input
+          isReadOnly
+          type="number"
+          color="secondary"
+          label="Phone"
+          defaultValue="644343107"
+          className="max-w-xs"
+        />
+         <Button  isIconOnly color="success" startContent={<EditIcon/>}>
+        
+        
+      </Button>  
+      </CardBody>
+      </Card>
+
+
+
+</div>
       </div>
     </>
   );

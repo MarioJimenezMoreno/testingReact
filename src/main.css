@@ -1,26 +1,13 @@
-.header {
+/* .header {
   height: 10vh;
   font-size: 1rem;
-}
+} */
 
 .logo {
   max-width: 80px;
   height: auto;
 }
 
-.navbar {
-  background-color: #3498db;
-}
-
-.navbar .nav-link {
-  color: white;
-  margin: 0 10px;
-  text-decoration: none;
-}
-
-.navbar .nav-link:hover {
-  text-decoration: underline;
-}
 .newTaskButton {
   top: 85%;
   left: 90%;
@@ -81,23 +68,6 @@
 .dayContainer::-webkit-scrollbar-thumb {
   display: none;
 }
-/* .currentTaskContainer,
-.previousTaskContainer,
-.nextTaskContainer {
-  margin-block: 0;
-  margin-inline: 5px;
-  justify-self: center;
-  height: 100%;
-}
-.previousTaskContainer {
-  background-color: blue;
-}
-.currentTaskContainer {
-  background-color: red;
-}
-.nextTaskContainer {
-  background-color: green;
-} */
 
 .dayPreview {
   height: 100%;
@@ -161,7 +131,6 @@
   white-space: nowrap;
 }
 .profileContainer {
-  width: 100vw;
   height: 90vh;
-  background-color: grey;
+  background-color: rgb(50, 50, 50);
 }

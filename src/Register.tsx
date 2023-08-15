@@ -1,6 +1,16 @@
 import React, { useState } from 'react';
+import { Input, Checkbox, Button } from "@nextui-org/react";
+import {Link} from 'react-router-dom'
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter} from "@nextui-org/react";
+import { MailIcon } from "./IconComponents/MailIcon";
+import { ModalProps } from "./types";
+import {EyeFilledIcon} from "./IconComponents/EyeFilledIcon";
+import {EyeSlashFilledIcon} from "./IconComponents/EyeSlashFilledIcon";
+import { Data } from './types';
+import { UserIcon } from './IconComponents/UserIcon';
+import { PhoneIcon } from './IconComponents/PhoneIcon';
 
-async function registerUser(data: any) {
+async function registerUser (data: Data) {
       const request = await fetch('api/users/register', {
         method: 'POST',
         headers: {
@@ -12,127 +22,161 @@ async function registerUser(data: any) {
   
       if (request.ok) {
         alert('The account was successfully created');
-        window.location.href = '/app'; // cambiar
+        window.location.href = '/app'; // Usar Link
       } else {
         alert('An error occurred while registering the account');
       }
     }
 
-const Register: React.FC = () => {
-  const [data, setData] = useState({
-    email: '',
-    username: '',
-    phone: '',
-    password: '',
-    repeatPassword: '',
-  });
+function Register ({isOpen, onOpenChange}: ModalProps) {
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { id, value } = event.target;
-    setData((prevData) => ({ ...prevData, [id]: value }));
-  };
+  const [isPasswordVisible, setPasswordVisible] = React.useState(false);
+  const [isRepeatPasswordVisible, setRepeatPasswordVisible] = React.useState(false);
+  const togglePasswordVisibility = () => setPasswordVisible(!isPasswordVisible);
+  const toggleRepeatPasswordVisibility = () => setRepeatPasswordVisible(!isRepeatPasswordVisible);
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+
+  const [value, setValue] = React.useState("");
+
+  const validateEmail = (value:string) => value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i);
+
+  const validationState = React.useMemo(() => {
+    if (value === "") return undefined;
+
+    return validateEmail(value) ? "valid" : "invalid";
+  }, [value]);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (data.password !== data.repeatPassword) {
+    if (password !== repeatPassword) {
       alert('Passwords must be identical');
-    } else if (data.password.length < 6) {
+    } else if (password.length < 6) {
       alert('Password requires a minimum length of 6');
     } else {
+      const data = {
+        username,
+        email,
+        phone,
+        password,
+      };
       registerUser(data);
     }
   };
 
   return (
-    <div className="bg-gradient-primary">
-      <div className="container">
-        <div className="card o-hidden border-0 shadow-lg my-5">
-          <div className="card-body p-0">
-            <div className="row">
-              <div className="col-lg-5 d-none d-lg-block bg-register-image"></div>
-              <div className="col-lg-7">
-                <div className="p-5">
-                  <div className="text-center">
-                    <h1 className="h4 text-gray-900 mb-4">Sign In</h1>
-                  </div>
-                  <form className="user" onSubmit={handleSubmit}>
-                    <div className="form-group row">
-                      <div className="col-sm-6 mb-3 mb-sm-0">
-                        <input
-                          type="text"
-                          className="form-control form-control-user"
-                          id="username"
-                          placeholder="Username"
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div className="col-sm-6">
-                        <input
-                          type="text"
-                          className="form-control form-control-user"
-                          id="phone"
-                          placeholder="Phone"
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col-sm-6 mb-3 mb-sm-0">
-                        <input
-                          type="password"
-                          className="form-control form-control-user"
-                          id="password"
-                          placeholder="Password"
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                      <div className="col-sm-6">
-                        <input
-                          type="password"
-                          className="form-control form-control-user"
-                          id="repeatPassword"
-                          placeholder="Repeat Password"
-                          onChange={handleInputChange}
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group">
-                      <input
-                        type="email"
-                        className="form-control form-control-user"
-                        id="email"
-                        placeholder="Email Address"
-                        onChange={handleInputChange}
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-user btn-block"
-                    >
-                      Register Account
-                    </button>
-                    <hr />
-                  </form>
-                  <hr />
-                  <div className="text-center">
-                    <a className="small" href="forgot-password.html">
-                      Forgot Password?
-                    </a>
-                  </div>
-                  <div className="text-center">
-                    <a className="small" href="login.html">
-                      Already have an account? Login!
-                    </a>
-                  </div>
-                </div>
+   <> 
+    <Modal 
+      isOpen={isOpen} 
+      onOpenChange={onOpenChange}
+      placement="top-center"
+      
+    >
+      <ModalContent>
+        {(onClose) => (
+          <>
+            <ModalHeader className="flex flex-col gap-1">Register Account</ModalHeader>
+            <ModalBody>
+            <Input
+            isRequired
+                autoFocus
+                endContent={
+                  <UserIcon/>
+                }
+                label="Username"
+                placeholder="Enter your username"
+                variant="bordered"
+                onChange={(e) => setUsername(e.target.value)}  
+              />
+              <Input
+              isRequired
+                autoFocus
+                endContent={
+                  <MailIcon/>
+                }
+                color={validationState === "invalid" ? "danger" : "success"}
+                errorMessage={validationState === "invalid" && "Please enter a valid email"}
+                validationState={validationState}
+                onValueChange={setValue}
+                label="Email"
+                placeholder="Enter your email"
+                variant="bordered"
+                onChange={(e) => setEmail(e.target.value)}    
+              />
+              <Input
+                endContent={
+                  <PhoneIcon/>
+                }
+                label="Phone"
+                placeholder=""
+                type="phonenumber"
+                variant="bordered"
+                onChange={(e) => setPhone(e.target.value)}                      
+              />
+    <Input
+    isRequired
+      label="Password"
+      variant="bordered"
+      onChange={(e) => setPassword(e.target.value)}    
+      endContent={
+        <button className="focus:outline-none" type="button" onClick={togglePasswordVisibility}>
+          {isPasswordVisible ? (
+            <EyeSlashFilledIcon/>
+          ) : (
+            <EyeFilledIcon/>
+          )}
+        </button>
+      }
+      type={isPasswordVisible ? "text" : "password"}
+    />
+    <Input
+    isRequired
+      label="Repeat Password"
+      variant="bordered"
+      onChange={(e) => setRepeatPassword(e.target.value)}    
+      endContent={
+        <button className="focus:outline-none" type="button" onClick={toggleRepeatPasswordVisibility}>
+          {isRepeatPasswordVisible ? (
+            <EyeSlashFilledIcon/>
+          ) : (
+            <EyeFilledIcon/>
+          )}
+        </button>
+      }
+      type={isRepeatPasswordVisible ? "text" : "password"}
+    />
+              <div className="flex py-2 px-1 justify-between">
+                <Checkbox
+                  classNames={{
+                    label: "text-small",
+                  }}
+                >
+                  Remember me
+                </Checkbox>
+                <Link color="primary" to="/">
+                  Forgot password?
+                </Link>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+            </ModalBody>
+            <ModalFooter>
+              <Button color="danger" variant="flat" onClick={onClose}>
+                Close
+              </Button>
+              <Button color="primary" onClick={handleSubmit}>
+                Register
+              </Button>
+            </ModalFooter>
+          </>
+        )}
+      </ModalContent>
+    </Modal>
+  </>
+ );
 };
 
 export default Register;
