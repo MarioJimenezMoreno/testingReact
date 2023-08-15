@@ -1,16 +1,14 @@
-// import { Navbar, Nav } from "react-bootstrap";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button} from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, useDisclosure} from "@nextui-org/react";
 import {Link} from 'react-router-dom'
 import Login from "./Login";
 import Register from "./Register";
-import {useDisclosure} from "@nextui-org/react";
 
 const HeaderMP = () => {
     const { isOpen: isLoginOpen, onOpen: onLoginOpen, onOpenChange: onLoginOpenChange } = useDisclosure();
     const { isOpen: isRegisterOpen, onOpen: onRegisterOpen, onOpenChange: onRegisterOpenChange } = useDisclosure();
 
   return (
-    <Navbar shouldHideOnScroll>
+    <Navbar shouldHideOnScroll height="10vh">
     <NavbarBrand>
       <p className="font-bold text-inherit">Tortoise</p>
     </NavbarBrand>

@@ -1,22 +1,8 @@
-// import { Navbar, Nav } from "react-bootstrap";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Avatar, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem} from "@nextui-org/react";
 import {Link} from 'react-router-dom'
-// import { HeaderProps } from './types';
 
 const Header = () => {
   return (
-    // <Navbar className="p-4 header">
-    //   <Nav className="w-100 justify-content-between align-items-center">
-    //     <Navbar.Brand>
-    //       <img src="https://unavatar.io/tortoise" alt="Navbar Logo" className="logo" />
-    //     </Navbar.Brand>
-    //     {links.map((link, index) => (
-    //       <Nav.Link key={index} href={link.url}>
-    //         {link.label}
-    //       </Nav.Link>
-    //     ))}
-    //   </Nav>
-    // </Navbar>
     <Navbar height="10vh">
     <NavbarBrand>
       <p className="font-bold text-inherit">Tortoise</p>

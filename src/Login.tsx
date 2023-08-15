@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { Input, Checkbox, Button } from "@nextui-org/react";
 import {Link} from 'react-router-dom'
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter,Input, Checkbox, Button} from "@nextui-org/react";
 import { LockIcon } from "./IconComponents/LockIcon";
 import { MailIcon } from "./IconComponents/MailIcon";
 import { ModalProps } from "./types";

@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { Input, Checkbox, Button } from "@nextui-org/react";
 import {Link} from 'react-router-dom'
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Input, Checkbox, Button} from "@nextui-org/react";
 import { MailIcon } from "./IconComponents/MailIcon";
-import { ModalProps } from "./types";
 import {EyeFilledIcon} from "./IconComponents/EyeFilledIcon";
 import {EyeSlashFilledIcon} from "./IconComponents/EyeSlashFilledIcon";
-import { Data } from './types';
 import { UserIcon } from './IconComponents/UserIcon';
 import { PhoneIcon } from './IconComponents/PhoneIcon';
+import { ModalProps, Data } from "./types";
 
 async function registerUser (data: Data) {
       const request = await fetch('api/users/register', {
