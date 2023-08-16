@@ -74,12 +74,9 @@ const Profile: React.FC = () => {
       </Button>  
       </CardBody>
       </Card>
-
-
-
-</div>
       </div>
-    </>
+    </div>
+  </>
   );
 };
 

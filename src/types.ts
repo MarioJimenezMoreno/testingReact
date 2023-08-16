@@ -39,3 +39,7 @@ export interface ModalProps {
   isOpen: boolean;
   onOpenChange: () => void;
 }
+
+export interface ThemeProps {
+  onThemeChange: () => void;
+}

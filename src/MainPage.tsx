@@ -1,13 +1,13 @@
 import "./MainPage.css";
 import HeaderMP from './HeaderMP'
 import Team from "./Team";
+import { ThemeProps } from "./types";
 
-function MainPage() {
+function MainPage({onThemeChange}:ThemeProps) {
     
   return (
-    <>
-    <div className="container">
-    <HeaderMP/>
+    <> 
+    <HeaderMP onThemeChange={onThemeChange}/>
     <div id="box-2">
         <div className="box_texto flex"> 
           <div className="cont_imagen">
@@ -32,7 +32,6 @@ function MainPage() {
             </div>
           </div>
         </div>
-      </div>
       </div>
       <Team/>
     </>

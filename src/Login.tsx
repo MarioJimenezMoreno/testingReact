@@ -33,12 +33,11 @@ function Login ({isOpen, onOpenChange}: ModalProps)  {
   };
 
   return (
-    <>
+        <>
                 <Modal 
                   isOpen={isOpen} 
                   onOpenChange={onOpenChange}
-                  placement="top-center"
-                  
+                  placement="top-center"  
                 >
                   <ModalContent>
                     {(onClose) => (
@@ -90,7 +89,7 @@ function Login ({isOpen, onOpenChange}: ModalProps)  {
                     )}
                   </ModalContent>
                 </Modal>
-              </>
+                </>
             );
           }
 
