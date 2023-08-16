@@ -8,8 +8,7 @@ function MainPage({onThemeChange}:ThemeProps) {
   return (
     <> 
     <HeaderMP onThemeChange={onThemeChange}/>
-    <div id="box-2">
-        <div className="box_texto flex"> 
+    <div className="h-screen px-80 py-28">
           <div className="cont_imagen">
             <img className="imagen" alt="placeholder" />
           </div>
@@ -20,8 +19,7 @@ function MainPage({onThemeChange}:ThemeProps) {
               revolucionaria tecnologia tortuga
             </div>
           </div>
-        </div>
-        <div className="box_texto flex der"> 
+          <div className="box_texto flex der"> 
           <div className="cont_imagen">
             <img className="imagen" alt="placeholder" />
           </div>
@@ -31,8 +29,9 @@ function MainPage({onThemeChange}:ThemeProps) {
               Permite que Tortuga Corporation calcule, analice y recomiende tus actividades de ocio.
             </div>
           </div>
-        </div>
       </div>
+        </div>
+
       <Team/>
     </>
   )

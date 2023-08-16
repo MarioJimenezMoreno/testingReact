@@ -11,7 +11,7 @@ const HeaderMP = ({onThemeChange}:ThemeProps) => {
     const { isOpen: isRegisterOpen, onOpen: onRegisterOpen, onOpenChange: onRegisterOpenChange } = useDisclosure();
 
   return (
-    <Navbar shouldHideOnScroll height="10vh">
+    <Navbar shouldHideOnScroll isBordered height="4rem" className="fixed">
     <NavbarBrand>
       <p className="font-bold text-inherit">Tortoise</p>
     </NavbarBrand>
