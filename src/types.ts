@@ -38,6 +38,7 @@ export interface DaysContainerProps {
 export interface ModalProps {
   isOpen: boolean;
   onOpenChange: () => void;
+  theme: string;
 }
 
 export interface ThemeProps {

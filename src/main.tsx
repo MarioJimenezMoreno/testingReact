@@ -6,6 +6,7 @@ import Profile from './Profile';
 import './Main.css';
 import './style.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {NextUIProvider} from "@nextui-org/react";
 
 function AppWrapper() {
   const [theme, setTheme] = useState("dark");
@@ -15,15 +16,17 @@ function AppWrapper() {
   };
 
   return (
+    <main className={`text-foreground bg-background ${theme}`}>
     <BrowserRouter>
-      <main className={`text-foreground bg-background ${theme}`}>
+    <NextUIProvider>      
         <Routes>
           <Route path='/' element={<MainPage onThemeChange={handleThemeChange} />} />
           <Route path='/app' element={<App />} />
           <Route path='/profile' element={<Profile />} />
         </Routes>
-      </main>
+      </NextUIProvider>
     </BrowserRouter>
+    </main>
   );
 }
 

@@ -2,8 +2,19 @@ import React from "react";
 import Header from "./Header";
 import EditIcon from "./IconComponents/EditIcon"
 import {Input, Button, Card,CardBody} from "@nextui-org/react";
+import SaveIcon from "./IconComponents/SaveIcon";
 
 const Profile: React.FC = () => {
+
+  const [isUsernameReadOnly, setUsernameEditable] = React.useState(true);
+  const toggleUsernameEditability = () => setUsernameEditable(!isUsernameReadOnly);
+  const [isPhoneReadOnly, setPhoneEditable] = React.useState(true);
+  const togglePhoneEditability = () => setPhoneEditable(!isPhoneReadOnly);
+  const [isEmailReadOnly, setEmailEditable] = React.useState(true);
+  const toggleEmailEditability = () => setEmailEditable(!isEmailReadOnly);
+  const [isChangePasswordVisible, setChangePasswordVisible] = React.useState(false);
+  const toggleChangePasswordVisibility = () => setChangePasswordVisible(!isChangePasswordVisible);
+
   return (
     <>
       <Header/> 
@@ -13,65 +24,91 @@ const Profile: React.FC = () => {
       <Card>
       <CardBody className="flex flex-row items-center gap-4">
       <Input
-          isReadOnly
+          isReadOnly={isUsernameReadOnly}
           type="email"
-          color="secondary"
+          color={isUsernameReadOnly?"primary":"default"}
           label="Username"
           defaultValue="Mordisquitos"
           className="max-w-xs"
         />
-         <Button color="success" startContent={<EditIcon/>}>
-        Edit
-        
-      </Button>  
+      {isUsernameReadOnly?
+        <Button color="success" startContent={<EditIcon/>} onPress={toggleUsernameEditability}>
+      Edit        
+    </Button>  :    <Button color="success" startContent={<SaveIcon/>} onPress={toggleUsernameEditability}>
+      Save        
+    </Button>}
       </CardBody>
       </Card>
-      <Card>
+      <Card>      
       <CardBody className="flex flex-row items-center gap-4">
-      <Input
-          isReadOnly
-          label="Password"
-          color="secondary"
-          defaultValue="password"
+      {isChangePasswordVisible ? 
+      (<>
+      <Input          
+          label="New Password"
+          color="default"
           type="password"
           className="max-w-xs"
         />
-         <Button color="success" startContent={<EditIcon/>}>
-        Edit
-        
-      </Button>  
-      </CardBody>
+      <Input          
+          label="Repeat New Password"
+          color="default"
+          type="password"
+          className="max-w-xs"
+        />
+        <Button color="success" startContent={<SaveIcon/>} onPress={toggleChangePasswordVisibility}>
+        Save        
+      </Button>
+      </>)
+      : 
+      (<>
+      <Input      
+        isReadOnly
+        label="Password"
+        color="primary"
+        type="password"
+        className="max-w-xs"
+      />
+      <Button color="success" startContent={<EditIcon/>} 
+      onPress={toggleChangePasswordVisibility}>
+      Edit        
+    </Button>
+    </>)}      
+    </CardBody> 
       </Card>
       <Card>
       <CardBody className="flex flex-row items-center gap-4">
       <Input
-          isReadOnly
+          isReadOnly={isEmailReadOnly}
           type="email"
-          color="secondary"
+          color={isEmailReadOnly?"primary":"default"}
           label="Email"
           defaultValue="mariojm2612@gmail.com"
           className="max-w-xs"
         />
-         <Button isIconOnly  color="success" startContent={<EditIcon/>}>
-        
-        
-      </Button>  
+    {isEmailReadOnly?
+        <Button color="success" startContent={<EditIcon/>} onPress={toggleEmailEditability}>
+      Edit        
+    </Button>  :    <Button color="success" startContent={<SaveIcon/>} onPress={toggleEmailEditability}>
+      Save        
+    </Button>}
       </CardBody>
       </Card>
       <Card>
       <CardBody className="flex flex-row items-center gap-4">
       <Input
-          isReadOnly
+          isReadOnly={isPhoneReadOnly}
           type="number"
-          color="secondary"
+          color={isPhoneReadOnly?"primary":"default"}
           label="Phone"
           defaultValue="644343107"
           className="max-w-xs"
         />
-         <Button  isIconOnly color="success" startContent={<EditIcon/>}>
-        
-        
-      </Button>  
+        {isPhoneReadOnly?
+        <Button color="success" startContent={<EditIcon/>} onPress={togglePhoneEditability}>
+      Edit        
+    </Button>  :    <Button color="success" startContent={<SaveIcon/>} onPress={togglePhoneEditability}>
+      Save        
+    </Button>}
       </CardBody>
       </Card>
       </div>

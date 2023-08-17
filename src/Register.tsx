@@ -26,7 +26,7 @@ async function registerUser (data: Data) {
       }
     }
 
-function Register ({isOpen, onOpenChange}: ModalProps) {
+function Register ({isOpen, onOpenChange, theme}: ModalProps) {
 
   const [isPasswordVisible, setPasswordVisible] = React.useState(false);
   const [isRepeatPasswordVisible, setRepeatPasswordVisible] = React.useState(false);
@@ -75,6 +75,7 @@ function Register ({isOpen, onOpenChange}: ModalProps) {
       placement="top-center"
       
     >
+      <div className={`text-foreground bg-background ${theme}`}>
       <ModalContent>
         {(onClose) => (
           <>
@@ -172,6 +173,7 @@ function Register ({isOpen, onOpenChange}: ModalProps) {
           </>
         )}
       </ModalContent>
+      </div>
     </Modal>
   </>
  );

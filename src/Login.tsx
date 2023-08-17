@@ -5,7 +5,7 @@ import { LockIcon } from "./IconComponents/LockIcon";
 import { MailIcon } from "./IconComponents/MailIcon";
 import { ModalProps } from "./types";
 
-function Login ({isOpen, onOpenChange}: ModalProps)  {
+function Login ({isOpen, onOpenChange, theme}: ModalProps)  {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -39,6 +39,7 @@ function Login ({isOpen, onOpenChange}: ModalProps)  {
                   onOpenChange={onOpenChange}
                   placement="top-center"  
                 >
+                  <div className={`text-foreground bg-background ${theme}`}>
                   <ModalContent>
                     {(onClose) => (
                       <>
@@ -88,6 +89,7 @@ function Login ({isOpen, onOpenChange}: ModalProps)  {
                       </>
                     )}
                   </ModalContent>
+                  </div>
                 </Modal>
                 </>
             );

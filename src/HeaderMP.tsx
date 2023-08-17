@@ -5,10 +5,18 @@ import {Link} from 'react-router-dom'
 import Login from "./Login";
 import Register from "./Register";
 import { ThemeProps } from "./types";
+import React from 'react';
 
 const HeaderMP = ({onThemeChange}:ThemeProps) => {
     const { isOpen: isLoginOpen, onOpen: onLoginOpen, onOpenChange: onLoginOpenChange } = useDisclosure();
     const { isOpen: isRegisterOpen, onOpen: onRegisterOpen, onOpenChange: onRegisterOpenChange } = useDisclosure();
+
+    const [theme, setTheme] = React.useState("dark");
+
+    const handleThemeChange = () => {
+      setTheme(prevTheme => prevTheme === "dark" ? "light" : "dark");
+      onThemeChange();
+    };
 
   return (
     <Navbar shouldHideOnScroll isBordered height="4rem" className="fixed">
@@ -35,15 +43,15 @@ const HeaderMP = ({onThemeChange}:ThemeProps) => {
     <NavbarContent justify="end">
       <NavbarItem className="lg:flex">
       <Button onPress={onLoginOpen} color="primary">Login</Button>
-          <Login isOpen={isLoginOpen} onOpenChange={onLoginOpenChange} />
+          <Login isOpen={isLoginOpen} onOpenChange={onLoginOpenChange} theme={theme}/>
         </NavbarItem>
         <NavbarItem>
           <Button onPress={onRegisterOpen} color="primary">Register</Button>
-          <Register isOpen={isRegisterOpen} onOpenChange={onRegisterOpenChange} />
+          <Register isOpen={isRegisterOpen} onOpenChange={onRegisterOpenChange} theme={theme}/>
       </NavbarItem>
       <NavbarItem>    <Switch
       defaultSelected
-      onChange={onThemeChange}
+      onChange={handleThemeChange}
       size="lg"
       color="primary"
       thumbIcon={({ isSelected}) =>
